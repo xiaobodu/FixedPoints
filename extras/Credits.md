@@ -1,8 +1,10 @@
 # Credits
 
-## Library written by Pharap https://github.com/Pharap
+## Main Programmers:
 
-## Special thanks to:
+- Pharap https://github.com/Pharap
+
+## Extra special thanks to:
 
 - bakagamedev - https://github.com/bakagamedev - extra-handy mutual duck
 - filmote - https://github.com/filmote - testing and debugging
