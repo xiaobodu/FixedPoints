@@ -1,8 +1,8 @@
 # Credits
 
-## Main Programmers:
+## Main Credits:
 
-- Pharap https://github.com/Pharap
+- [Pharap](https://github.com/Pharap) - main programmer
 
 ## Extra special thanks to:
 
