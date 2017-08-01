@@ -1,5 +1,3 @@
-# Credits
-
 ## Main Credits:
 
 - [Pharap](https://github.com/Pharap) - main programmer
