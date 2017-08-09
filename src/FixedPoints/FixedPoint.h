@@ -40,9 +40,9 @@ public:
 	constexpr FixedPoint(const IntegerType & integer);
 	constexpr FixedPoint(const IntegerType & integer, const FractionType & fraction);
 
-	constexpr InternalType GetInternal(void) const;
-	constexpr IntegerType GetInteger(void) const;
-	constexpr FractionType GetFraction(void) const;
+	constexpr InternalType getInternal(void) const;
+	constexpr IntegerType getInteger(void) const;
+	constexpr FractionType getFraction(void) const;
 
 	constexpr explicit operator IntegerType(void) const;
 	constexpr explicit operator float(void) const;
@@ -51,7 +51,7 @@ public:
 	template< unsigned IntegerOut, unsigned FractionOut >
 	constexpr explicit operator FixedPoint<IntegerOut, FractionOut>(void) const;
 
-	constexpr static FixedPoint FromInternal(const InternalType & value);
+	constexpr static FixedPoint fromInternal(const InternalType & value);
 
 	constexpr FixedPoint operator -(void) const;
 	FixedPoint & operator ++(void);
@@ -121,19 +121,19 @@ constexpr FixedPoint<Integer, Fraction>::FixedPoint(const IntegerType & integer,
 }
 
 template< unsigned Integer, unsigned Fraction >
-constexpr typename FixedPoint<Integer, Fraction>::InternalType FixedPoint<Integer, Fraction>::GetInternal(void) const
+constexpr typename FixedPoint<Integer, Fraction>::InternalType FixedPoint<Integer, Fraction>::getInternal(void) const
 {
 	return this->value;
 }
 
 template< unsigned Integer, unsigned Fraction >
-constexpr typename FixedPoint<Integer, Fraction>::IntegerType FixedPoint<Integer, Fraction>::GetInteger(void) const
+constexpr typename FixedPoint<Integer, Fraction>::IntegerType FixedPoint<Integer, Fraction>::getInteger(void) const
 {
 	return static_cast<IntegerType>(this->value >> FractionSize);
 }
 
 template< unsigned Integer, unsigned Fraction >
-constexpr typename FixedPoint<Integer, Fraction>::FractionType FixedPoint<Integer, Fraction>::GetFraction(void) const
+constexpr typename FixedPoint<Integer, Fraction>::FractionType FixedPoint<Integer, Fraction>::getFraction(void) const
 {
 	return static_cast<FractionType>(this->value & Details::IdentityMask<FractionSize>::Value);
 }
@@ -141,7 +141,7 @@ constexpr typename FixedPoint<Integer, Fraction>::FractionType FixedPoint<Intege
 template< unsigned Integer, unsigned Fraction >
 constexpr FixedPoint<Integer, Fraction>::operator IntegerType(void) const
 {
-	return this->GetInteger();
+	return this->getInteger();
 }
 
 template< unsigned Integer, unsigned Fraction >
@@ -165,14 +165,14 @@ constexpr FixedPoint<Integer, Fraction>::operator FixedPoint<IntegerOut, Fractio
 
 	return
 	(FractionOut > Fraction) ?
-		OutputType::FromInternal(static_cast<InternalType>(this->value << ((FractionOut > Fraction) ? FractionOut - Fraction : 0))) :
+		OutputType::fromInternal(static_cast<InternalType>(this->value << ((FractionOut > Fraction) ? FractionOut - Fraction : 0))) :
 	(FractionOut < Fraction) ?
-		OutputType::FromInternal(static_cast<InternalType>(this->value >> ((FractionOut < Fraction) ? Fraction - FractionOut : 0))) :
-		OutputType::FromInternal(this->value);
+		OutputType::fromInternal(static_cast<InternalType>(this->value >> ((FractionOut < Fraction) ? Fraction - FractionOut : 0))) :
+		OutputType::fromInternal(this->value);
 }
 
 template< unsigned Integer, unsigned Fraction >
-constexpr FixedPoint<Integer, Fraction> FixedPoint<Integer, Fraction>::FromInternal(const typename FixedPoint<Integer, Fraction>::InternalType & value)
+constexpr FixedPoint<Integer, Fraction> FixedPoint<Integer, Fraction>::fromInternal(const typename FixedPoint<Integer, Fraction>::InternalType & value)
 {
 	return FixedPoint<Integer, Fraction>(RawType(value));
 }
@@ -180,7 +180,7 @@ constexpr FixedPoint<Integer, Fraction> FixedPoint<Integer, Fraction>::FromInter
 template< unsigned Integer, unsigned Fraction >
 constexpr FixedPoint<Integer, Fraction> FixedPoint<Integer, Fraction>::operator -(void) const
 {
-	return FixedPoint<Integer, Fraction>::FromInternal(-this->value);
+	return FixedPoint<Integer, Fraction>::fromInternal(-this->value);
 }
 
 template< unsigned Integer, unsigned Fraction >
@@ -232,51 +232,51 @@ FixedPoint<Integer, Fraction> & FixedPoint<Integer, Fraction>::operator /=(const
 template< unsigned Integer, unsigned Fraction >
 constexpr bool operator ==(const FixedPoint<Integer, Fraction> & left, const FixedPoint<Integer, Fraction> & right)
 {
-	return (left.GetInternal() == right.GetInternal());
+	return (left.getInternal() == right.getInternal());
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr bool operator !=(const FixedPoint<Integer, Fraction> & left, const FixedPoint<Integer, Fraction> & right)
 {
-	return (left.GetInternal() != right.GetInternal());
+	return (left.getInternal() != right.getInternal());
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr bool operator <(const FixedPoint<Integer, Fraction> & left, const FixedPoint<Integer, Fraction> & right)
 {
-	return (left.GetInternal() < right.GetInternal());
+	return (left.getInternal() < right.getInternal());
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr bool operator >(const FixedPoint<Integer, Fraction> & left, const FixedPoint<Integer, Fraction> & right)
 {
-	return (left.GetInternal() > right.GetInternal());
+	return (left.getInternal() > right.getInternal());
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr bool operator <=(const FixedPoint<Integer, Fraction> & left, const FixedPoint<Integer, Fraction> & right)
 {
-	return (left.GetInternal() <= right.GetInternal());
+	return (left.getInternal() <= right.getInternal());
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr bool operator >=(const FixedPoint<Integer, Fraction> & left, const FixedPoint<Integer, Fraction> & right)
 {
-	return (left.GetInternal() >= right.GetInternal());
+	return (left.getInternal() >= right.getInternal());
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr FixedPoint<Integer, Fraction> operator +(const FixedPoint<Integer, Fraction> & left, const FixedPoint<Integer, Fraction> & right)
 {
 	using InternalType = typename FixedPoint<Integer, Fraction>::InternalType;
-	return FixedPoint<Integer, Fraction>::FromInternal(static_cast<InternalType>(left.GetInternal() + right.GetInternal()));
+	return FixedPoint<Integer, Fraction>::fromInternal(static_cast<InternalType>(left.getInternal() + right.getInternal()));
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr FixedPoint<Integer, Fraction> operator -(const FixedPoint<Integer, Fraction> & left, const FixedPoint<Integer, Fraction> & right)
 {
 	using InternalType = typename FixedPoint<Integer, Fraction>::InternalType;
-	return FixedPoint<Integer, Fraction>::FromInternal(static_cast<InternalType>(left.GetInternal() - right.GetInternal()));
+	return FixedPoint<Integer, Fraction>::fromInternal(static_cast<InternalType>(left.getInternal() - right.getInternal()));
 }
 
 template< unsigned Integer, unsigned Fraction >
@@ -289,7 +289,7 @@ template< unsigned Integer, unsigned Fraction >
 constexpr FixedPoint<Integer, Fraction> operator /(const FixedPoint<Integer, Fraction> & left, const FixedPoint<Integer, Fraction> & right)
 {
 	using InternalType = typename FixedPoint<Integer, Fraction>::InternalType;
-	return FixedPoint<Integer, Fraction>::FromInternal(static_cast<InternalType>((left.GetInternal() << Fraction) / right.GetInternal()));
+	return FixedPoint<Integer, Fraction>::fromInternal(static_cast<InternalType>((left.getInternal() << Fraction) / right.getInternal()));
 }
 
 #define OPERATOR_LOGIC( type, op ) \
@@ -350,6 +350,6 @@ constexpr FixedPoint<Integer * 2, Fraction * 2> Multiply(const FixedPoint<Intege
 {	
 	using ResultType = FixedPoint<Integer * 2, Fraction * 2>;
 	using InternalType = typename ResultType::InternalType;
-	return ResultType::FromInternal(static_cast<InternalType>(static_cast<InternalType>(left.GetInternal()) * static_cast<InternalType>(right.GetInternal())));
+	return ResultType::fromInternal(static_cast<InternalType>(static_cast<InternalType>(left.getInternal()) * static_cast<InternalType>(right.getInternal())));
 }
 END_FIXED_POINTS
