@@ -30,12 +30,12 @@ SQ1x62	KEYWORD1
 # Methods and Functions (KEYWORD2) #
 ####################################
 
+getInternal	KEYWORD2
+getInteger	KEYWORD2
+getFraction	KEYWORD2
+fromInternal	KEYWORD2
+Multiply	KEYWORD2
 Floor	KEYWORD2
 Ceil	KEYWORD2
 Round	KEYWORD2
 Signbit	KEYWORD2
-GetInternal	KEYWORD2
-GetInteger	KEYWORD2
-GetFraction	KEYWORD2
-Multiply	KEYWORD2
-FromInternal	KEYWORD2
