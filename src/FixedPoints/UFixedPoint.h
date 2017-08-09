@@ -158,23 +158,15 @@ template< unsigned Integer, unsigned Fraction >
 template< unsigned IntegerOut, unsigned FractionOut >
 constexpr UFixedPoint<Integer, Fraction>::operator UFixedPoint<IntegerOut, FractionOut>(void) const
 {
-	using Output = UFixedPoint<IntegerOut, FractionOut>;
-	using InternalType = typename Output::InternalType;
+	using OutputType = UFixedPoint<IntegerOut, FractionOut>;
+	using InternalType = typename OutputType::InternalType;
 
-	if (FractionOut > Fraction)
-	{
-		constexpr const auto Difference = (FractionOut > Fraction) ? FractionOut - Fraction : 0;
-		return Output::FromInternal(static_cast<InternalType>(this->value << Difference));
-	}
-	else if (FractionOut < Fraction)
-	{
-		constexpr const auto Difference = (FractionOut < Fraction) ? Fraction - FractionOut : 0;
-		return Output::FromInternal(static_cast<InternalType>(this->value >> Difference));
-	}
-	else
-	{
-		return Output::FromInternal(this->value);
-	}
+	return
+	(FractionOut > Fraction) ?
+		OutputType::FromInternal(static_cast<InternalType>(this->value << ((FractionOut > Fraction) ? FractionOut - Fraction : 0))) :
+	(FractionOut < Fraction) ?
+		OutputType::FromInternal(static_cast<InternalType>(this->value >> ((FractionOut < Fraction) ? Fraction - FractionOut : 0))) :
+		OutputType::FromInternal(this->value);
 }
 
 template< unsigned Integer, unsigned Fraction >

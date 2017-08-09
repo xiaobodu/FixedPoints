@@ -160,23 +160,15 @@ template< unsigned Integer, unsigned Fraction >
 template< unsigned IntegerOut, unsigned FractionOut >
 constexpr FixedPoint<Integer, Fraction>::operator FixedPoint<IntegerOut, FractionOut>(void) const
 {
-	using Output = FixedPoint<IntegerOut, FractionOut>;
-	using InternalType = typename Output::InternalType;
+	using OutputType = FixedPoint<IntegerOut, FractionOut>;
+	using InternalType = typename OutputType::InternalType;
 
-	if (FractionOut > Fraction)
-	{
-		constexpr const auto Difference = (FractionOut > Fraction) ? FractionOut - Fraction : 0;
-		return Output::FromInternal(static_cast<InternalType>(this->value << Difference));
-	}
-	else if (FractionOut < Fraction)
-	{
-		constexpr const auto Difference = (FractionOut < Fraction) ? Fraction - FractionOut : 0;
-		return Output::FromInternal(static_cast<InternalType>(this->value >> Difference));
-	}
-	else
-	{
-		return Output::FromInternal(this->value);
-	}
+	return
+	(FractionOut > Fraction) ?
+		OutputType::FromInternal(static_cast<InternalType>(this->value << ((FractionOut > Fraction) ? FractionOut - Fraction : 0))) :
+	(FractionOut < Fraction) ?
+		OutputType::FromInternal(static_cast<InternalType>(this->value >> ((FractionOut < Fraction) ? Fraction - FractionOut : 0))) :
+		OutputType::FromInternal(this->value);
 }
 
 template< unsigned Integer, unsigned Fraction >
