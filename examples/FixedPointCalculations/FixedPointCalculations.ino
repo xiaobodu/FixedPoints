@@ -10,15 +10,43 @@ void TestQ8x8(void)
 	Q8x8 a = 1.5;
 	Serial.println(F("Displaying a as float:"));
 	Serial.println(static_cast<float>(a));
-	Serial.println(F("Displaying the integer part of a"));
-	Serial.println(a.GetInteger());
 	Serial.println();
 	
-	Q8x8 b = 8.0;
+	Serial.println(F("Displaying the integer part of a"));
+	Serial.println(a.getInteger());
+	Serial.println();
+	
+	Serial.println(F("Displaying floorFixed(a):"));
+	Serial.println(static_cast<float>(floorFixed(a)));
+	Serial.println();
+	
+	Serial.println(F("Displaying ceilFixed(a):"));
+	Serial.println(static_cast<float>(ceilFixed(a)));
+	Serial.println();
+	
+	Serial.println(F("Displaying roundFixed(a):"));
+	Serial.println(static_cast<float>(roundFixed(a)));
+	Serial.println();
+	
+	Q8x8 b = 5.25;
 	Serial.println(F("Displaying b as float:"));
 	Serial.println(static_cast<float>(b));
+	Serial.println();
+	
 	Serial.println(F("Displaying the integer part of b"));
-	Serial.println(b.GetInteger());
+	Serial.println(b.getInteger());
+	Serial.println();
+	
+	Serial.println(F("Displaying floorFixed(b):"));
+	Serial.println(static_cast<float>(floorFixed(b)));
+	Serial.println();
+	
+	Serial.println(F("Displaying ceilFixed(b):"));
+	Serial.println(static_cast<float>(ceilFixed(b)));
+	Serial.println();
+	
+	Serial.println(F("Displaying roundFixed(b):"));
+	Serial.println(static_cast<float>(roundFixed(b)));
 	Serial.println();
 
 	Serial.println(F("Displaying a + b as float:"));
@@ -47,22 +75,50 @@ void TestQ8x8(void)
 void TestSQ7x8(void)
 {
 
-	Serial.println(F("The size of SQ7x8 on your system is:"));
+	Serial.println(F("The size of SQ78x8 on your system is:"));
 	Serial.println(sizeof(SQ7x8));
 	Serial.println();
 	
 	SQ7x8 a = 1.5;
 	Serial.println(F("Displaying a as float:"));
 	Serial.println(static_cast<float>(a));
-	Serial.println(F("Displaying the integer part of a"));
-	Serial.println(a.GetInteger());
 	Serial.println();
 	
-	SQ7x8 b = 8.0;
+	Serial.println(F("Displaying the integer part of a"));
+	Serial.println(a.getInteger());
+	Serial.println();
+	
+	Serial.println(F("Displaying floorFixed(a):"));
+	Serial.println(static_cast<float>(floorFixed(a)));
+	Serial.println();
+	
+	Serial.println(F("Displaying ceilFixed(a):"));
+	Serial.println(static_cast<float>(ceilFixed(a)));
+	Serial.println();
+	
+	Serial.println(F("Displaying roundFixed(a):"));
+	Serial.println(static_cast<float>(roundFixed(a)));
+	Serial.println();
+	
+	SQ7x8 b = 5.25;
 	Serial.println(F("Displaying b as float:"));
 	Serial.println(static_cast<float>(b));
+	Serial.println();
+	
 	Serial.println(F("Displaying the integer part of b"));
-	Serial.println(b.GetInteger());
+	Serial.println(b.getInteger());
+	Serial.println();
+	
+	Serial.println(F("Displaying floorFixed(b):"));
+	Serial.println(static_cast<float>(floorFixed(b)));
+	Serial.println();
+	
+	Serial.println(F("Displaying ceilFixed(b):"));
+	Serial.println(static_cast<float>(ceilFixed(b)));
+	Serial.println();
+	
+	Serial.println(F("Displaying roundFixed(b):"));
+	Serial.println(static_cast<float>(roundFixed(b)));
 	Serial.println();
 
 	Serial.println(F("Displaying a + b as float:"));
