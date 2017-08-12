@@ -34,8 +34,8 @@ getInternal	KEYWORD2
 getInteger	KEYWORD2
 getFraction	KEYWORD2
 fromInternal	KEYWORD2
-Multiply	KEYWORD2
-Floor	KEYWORD2
-Ceil	KEYWORD2
-Round	KEYWORD2
-Signbit	KEYWORD2
+multiply	KEYWORD2
+floorFixed	KEYWORD2
+ceilFixed	KEYWORD2
+roundFixed	KEYWORD2
+signbitFixed	KEYWORD2
