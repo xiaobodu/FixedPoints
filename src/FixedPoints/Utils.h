@@ -59,18 +59,14 @@ constexpr FixedPoint<Integer, Fraction> floorFixed(const FixedPoint<Integer, Fra
 
 template< unsigned Integer, unsigned Fraction >
 constexpr UFixedPoint<Integer, Fraction> ceilFixed(const UFixedPoint<Integer, Fraction> & value)
-{
-	using OutputType = UFixedPoint<Integer, Fraction>;
-	using InternalType = typename OutputType::InternalType;
-	return OutputType::fromInternal(static_cast<InternalType>((value.getInternal() & ~Details::IdentityMask<Fraction>::Value) + (1 << Fraction)));
+{	
+	return UFixedPoint<Integer, Fraction>((value.getFraction() == 0) ? value.getInteger() : (value.getInteger() + 1), 0);
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr FixedPoint<Integer, Fraction> ceilFixed(const FixedPoint<Integer, Fraction> & value)
 {
-	using OutputType = FixedPoint<Integer, Fraction>;
-	using InternalType = typename OutputType::InternalType;
-	return OutputType::fromInternal(static_cast<InternalType>((value.getInternal() & ~Details::IdentityMask<Fraction>::Value) + (1 << Fraction)));
+	return FixedPoint<Integer, Fraction>((value.getFraction() == 0) ? value.getInteger() : (value.getInteger() + 1), 0);
 }
 
 template< unsigned Integer, unsigned Fraction >
