@@ -84,26 +84,26 @@ The common aliases are provided by `FixedPointsCommon.h`.
 
 ### Free Functions:
 
-- `Floor`: The floor operation.
-- `Ceil`: The Ceiling operation
-- `Round`: Rounding operation.
-- `Signbit`: Returns `true` for signed numbers and `false` for unsigned numbers.
-- `Multiply`: Multiplies two `UFixedPoint`s or two `FixedPoint`s, returns a result that is twice the resolution of the input.
+- `floorFixed`: The floor operation.
+- `ceilFixed`: The Ceiling operation
+- `roundFixed`: Rounding operation.
+- `signbitFixed`: Returns `true` for signed numbers and `false` for unsigned numbers.
+- `multiply`: Multiplies two `UFixedPoint`s or two `FixedPoint`s, returns a result that is twice the resolution of the input.
 
 ### Member Functions:
 
-- `UFixedPoint<I, F>::GetInteger`: Gets the integer part of an unsigned fixed point.
-- `UFixedPoint<I, F>::GetFraction`: Gets the fractional part of an unsigned fixed point.
-- `UFixedPoint<I, F>::GetInternal`: Gets the internal representation of an unsigned fixed point.
+- `UFixedPoint<I, F>::getInteger`: Gets the integer part of an unsigned fixed point.
+- `UFixedPoint<I, F>::getFraction`: Gets the fractional part of an unsigned fixed point.
+- `UFixedPoint<I, F>::getInternal`: Gets the internal representation of an unsigned fixed point.
 
-- `FixedPoint<I, F>::GetInteger`: Gets the integer part of a signed fixed point.
-- `FixedPoint<I, F>::GetFraction`: Gets the fractional part of a signed fixed point.
-- `FixedPoint<I, F>::GetInternal`: Gets the internal representation of a signed fixed point.
+- `FixedPoint<I, F>::getInteger`: Gets the integer part of a signed fixed point.
+- `FixedPoint<I, F>::getFraction`: Gets the fractional part of a signed fixed point.
+- `FixedPoint<I, F>::getInternal`: Gets the internal representation of a signed fixed point.
 
 ### Static Functions:
 
-- `UFixedPoint<I, F>::FromInternal`: Produces an unsigned fixed point number from its internal representation.
-- `FixedPoint<I, F>::FromInternal`: Produces a signed fixed point number from its internal representation.
+- `UFixedPoint<I, F>::fromInternal`: Produces an unsigned fixed point number from its internal representation.
+- `FixedPoint<I, F>::fromInternal`: Produces a signed fixed point number from its internal representation.
 
 ## Construction:
 
