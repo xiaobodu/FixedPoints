@@ -108,13 +108,13 @@ constexpr UFixedPoint<Integer, Fraction>::UFixedPoint(void)
 
 template< unsigned Integer, unsigned Fraction >
 constexpr UFixedPoint<Integer, Fraction>::UFixedPoint(const IntegerType & integer)
-	: Base(RawType(static_cast<InternalType>(integer << FractionSize)))
+	: Base(RawType(static_cast<InternalType>(integer) << FractionSize))
 {
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr UFixedPoint<Integer, Fraction>::UFixedPoint(const IntegerType & integer, const FractionType & fraction)
-	: Base(RawType(static_cast<InternalType>((integer << FractionSize) | fraction)))
+	: Base(RawType((static_cast<InternalType>(integer) << FractionSize) | fraction))
 {
 }
 

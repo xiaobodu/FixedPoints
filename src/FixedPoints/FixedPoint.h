@@ -110,13 +110,13 @@ constexpr FixedPoint<Integer, Fraction>::FixedPoint(void)
 
 template< unsigned Integer, unsigned Fraction >
 constexpr FixedPoint<Integer, Fraction>::FixedPoint(const IntegerType & integer)
-	: Base(RawType(static_cast<InternalType>(integer << FractionSize)))
+	: Base(RawType(static_cast<InternalType>(integer) << FractionSize))
 {
 }
 
 template< unsigned Integer, unsigned Fraction >
 constexpr FixedPoint<Integer, Fraction>::FixedPoint(const IntegerType & integer, const FractionType & fraction)
-	: Base(RawType(static_cast<InternalType>((integer << FractionSize) | fraction)))
+	: Base(RawType((static_cast<InternalType>(integer) << FractionSize) | fraction))
 {
 }
 
