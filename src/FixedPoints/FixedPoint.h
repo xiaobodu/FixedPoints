@@ -162,12 +162,13 @@ constexpr FixedPoint<Integer, Fraction>::operator FixedPoint<IntegerOut, Fractio
 {
 	using OutputType = FixedPoint<IntegerOut, FractionOut>;
 	using InternalType = typename OutputType::InternalType;
+	using ShiftType = Details::LeastUInt<Details::BitSize<InternalType>::Value>;
 
 	return
 	(FractionOut > Fraction) ?
-		OutputType::fromInternal(static_cast<InternalType>(this->value << ((FractionOut > Fraction) ? FractionOut - Fraction : 0))) :
+		OutputType::fromInternal(static_cast<InternalType>(static_cast<ShiftType>(this->value) << ((FractionOut > Fraction) ? (FractionOut - Fraction) : 0))) :
 	(FractionOut < Fraction) ?
-		OutputType::fromInternal(static_cast<InternalType>(this->value >> ((FractionOut < Fraction) ? Fraction - FractionOut : 0))) :
+		OutputType::fromInternal(static_cast<InternalType>(static_cast<ShiftType>(this->value) >> ((FractionOut < Fraction) ? (Fraction - FractionOut) : 0))) :
 		OutputType::fromInternal(this->value);
 }
 
